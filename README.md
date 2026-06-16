@@ -86,11 +86,6 @@ chmod +x ~/.config/hypr/scripts/cloud
 
 ## ⚙️ Configuration
 
-Copy the script to scripts dir:
-
-```bash
-cp your
-
 Open the script:
 
 ```bash
