@@ -22,6 +22,8 @@ No terminal commands. No manual SSHFS mounting. Just press a key, enter your pas
 
 ### - 🔔 Desktop notifications for all actions
 
+### - ☁️ Waybar cloud status indicator
+
 ---
 
 ## 📸 How It Works
@@ -140,7 +142,27 @@ Reload Hyprland:
 hyprctl reload
 ```
 ---
+## Waybar Integration
 
+Add this module to your Waybar config:
+
+```json
+	"custom/cloud-status": {
+		"exec": "~/.config/waybar/scripts/cloud-status",
+		"interval": 1,
+		"return-type": "json",
+		"format": "{}",
+		"on-click": "kitty --directory ~/cloud sh -c 'eza --icons --group-directories-first ; exec $SHELL'"
+	},
+
+```
+
+Place `cloud-status.sh` in:
+
+```text
+~/.config/waybar/scripts/
+```
+---
 ### > Note: Before using the script, verify connectivity:
 
 ```bash
@@ -176,7 +198,8 @@ sudo pacman -S \
     rofi \
     openssh \
     libnotify \
-    openbsd-netcat
+    openbsd-netcat \
+    aza
 ```
 ---
 
