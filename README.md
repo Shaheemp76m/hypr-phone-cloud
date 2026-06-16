@@ -1,4 +1,4 @@
-🚀 Hypr Phone Cloud
+# 🚀 Hypr Phone Cloud
 
 Mount and unmount your Android phone over SSHFS with a single Hyprland keybind and a secure Rofi password prompt.
 
