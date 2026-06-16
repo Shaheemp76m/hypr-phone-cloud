@@ -2,7 +2,8 @@
 
 PHONE _IP=
 PHONE_PORT=2222
-USER=
+PHONE_USER=
+MOUNT_DIR=
 
 if mountpoint -q ~/cloud; then 
     if fusermount -uz ~/cloud; then
@@ -27,8 +28,8 @@ else
     -o ServerAliveInterval=5 \
     -o ServerAliveCountMax=2 \
     -p "$PHONE_PORT" \
-    "$USER"@"$PHONE_IP":/ \
-    ~/cloud; then
+    "$PHONE_USER@$PHONE_IP":/ \
+    "$MOUNT_DIR"; then
         notify-send "Phone Cloud" "mounted"
     else 
         notify-send "Phone Cloud" "mount failed"

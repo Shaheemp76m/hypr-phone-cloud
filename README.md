@@ -48,7 +48,7 @@ Press the keybind again to unmount.
 ## 📁 Project Files
 ```
 hypr-phone-cloud/
-├── cloud.sh
+├── phone-cloud.sh
 ├── password.rasi
 └── README.md
 ```
@@ -56,51 +56,54 @@ hypr-phone-cloud/
 
 ## ⚙️ Configuration
 
-Change Phone IP Address
+Open the script:
 
-Open:
+```bash
+micro ~/.config/hypr/scripts/cloud
 ```
-micro cloud.sh
-```
-Find:
-```
-10.81.57.121
-```
-Replace it with your phone's IP address.
 
-Example:
-```
-192.168.1.50
-```
-You may need to update it in multiple places inside the script.
+Edit these variables at the top:
 
----
+```bash
+PHONE_IP=
+PHONE_PORT=2222
+PHONE_USER=
+MOUNT_DIR=
+```
 
-Change SSH Port
+### Variables
 
-Find:
-```
--p 2222
-```
-Replace:
-```
--p 22
-```
-or whatever port your SSH server uses.
-
----
-
-Change Username
-
-Find:
-```
-smp76@
-```
-Replace with your device username.
+| Variable | Description |
+|-----------|------------|
+| PHONE_IP | IP address of your phone |
+| PHONE_PORT | SSH server port on your phone |
+| PHONE_USER | Username used to connect to the phone |
+| MOUNT_DIR | Path of directry to be mounted to |
 
 Example:
+
+```bash
+PHONE_IP="192.168.1.50"
+PHONE_PORT=2222
+PHONE_USER="myuser"
+MOUNT_DIR=~/cloud
 ```
-john@
+
+Save the file and make it executable:
+
+```bash
+chmod +x ~/.config/hypr/scripts/cloud
+```
+### > Note: Before using the script, verify connectivity:
+
+```bash
+nc -zv PHONE_IP PHONE_PORT
+```
+
+You should see:
+
+```text
+Connection succeeded
 ```
 ---
 
