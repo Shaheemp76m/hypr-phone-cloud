@@ -89,7 +89,7 @@ chmod +x ~/.config/hypr/scripts/cloud
 Open the script:
 
 ```bash
-micro ~/.config/hypr/scripts/cloud.sh
+micro ~/.config/hypr/scripts/cloud
 ```
 
 Edit these variables at the top:
