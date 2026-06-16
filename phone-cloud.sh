@@ -1,7 +1,7 @@
 #!/usr/bin/env bash 
 
-PHONE _IP=
-PHONE_PORT=2222
+PHONE _IP="" #leave it blank if you use hotspot method
+PHONE_PORT=2222 #default
 PHONE_USER=
 MOUNT_DIR=
 
@@ -12,6 +12,13 @@ if mountpoint -q ~/cloud; then
         notify-send "Phone Cloud" "Unmount Failed"
     fi
 else 
+     if [ -z "$PHONE_IP" ]; then
+        PHONE_IP=$(ip route show default | awk '{print $3}')
+        if  [ -z "$PHONE_IP" ]; then 
+            notify-send "Phone Cloud" "No hotspot detected"
+            exit 1
+        fi
+    fi
     if ! nc -z -w 1 "$PHONE_IP" "$PHONE_PORT" >/dev/null 2>&1; then
          notify-send "Phone Cloud" "phone not reachable"
          exit 1

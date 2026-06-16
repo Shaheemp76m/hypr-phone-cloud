@@ -1,6 +1,6 @@
 # 🚀 Hypr Phone Cloud
 
-Mount and unmount your Android phone over SSHFS with a single Hyprland keybind and a secure Rofi password prompt.
+Mount and unmount your Android phone storage over SSHFS with a single Hyprland keybind and a secure Rofi password prompt.
 
 No terminal commands. No manual SSHFS mounting. Just press a key, enter your password, and your phone storage appears instantly.
 
@@ -12,11 +12,15 @@ No terminal commands. No manual SSHFS mounting. Just press a key, enter your pas
 
 ### - 📂 Automatic SSHFS mounting
 
+### - 📡 Automatic hotspot IP detection
+
 ### - 🔄 Toggle mount / unmount with one keybind
 
 ### - 📶 Detects when the phone is unreachable
 
 ### - ⚠️ Handles wrong passwords gracefully
+
+### - 🚦 Verifies SSH availability before prompting for a password
 
 ### - 💤 Uses lazy unmount to avoid stale mount issues
 
@@ -52,6 +56,7 @@ Press the keybind again to unmount.
 hypr-phone-cloud/
 ├── phone-cloud.sh
 ├── password.rasi
+├── cloud-status.sh
 └── README.md
 ```
 ---
@@ -97,7 +102,7 @@ micro ~/.config/hypr/scripts/cloud
 Edit these variables at the top:
 
 ```bash
-PHONE_IP=
+PHONE_IP="" 
 PHONE_PORT=2222
 PHONE_USER=
 MOUNT_DIR=
@@ -108,7 +113,7 @@ MOUNT_DIR=
 
 | Variable | Description |
 |-----------|------------|
-| PHONE_IP | IP address of your phone |
+| PHONE_IP | leave empty to automatically detect the phone hotspot IP,or specify a fixed IP adress  |
 | PHONE_PORT | SSH server port on your phone |
 | PHONE_USER | Username used to connect to the phone |
 | MOUNT_DIR | Path of directry to be mounted to |
@@ -116,8 +121,8 @@ MOUNT_DIR=
 Example:
 
 ```bash
-PHONE_IP="192.168.1.50"
-PHONE_PORT=2222
+PHONE_IP="" #for hotspot mode
+PHONE_PORT=2222 #default
 PHONE_USER="myuser"
 MOUNT_DIR=~/cloud
 ```
@@ -127,6 +132,17 @@ Save the file and make it executable:
 ```bash
 chmod +x ~/.config/hypr/scripts/cloud
 ```
+---
+## Hotspot Mode
+
+if you use your phone's hotspot,leave "PHONE_IP" empty
+
+```bash 
+PHONE_IP=""
+```
+
+The script will automatically detect the hotspot gateway adress.
+No manual IP updates are required when the hotspot restarts 
 ---
 ## Hyprland Keybind
 
@@ -199,13 +215,13 @@ sudo pacman -S \
     openssh \
     libnotify \
     openbsd-netcat \
-    aza
+    eza
 ```
 ---
 
 ## 🛠️ Troubleshooting
 
-Phone Not Reachable
+### Phone Not Reachable
 
 Verify:
 ```
@@ -215,6 +231,17 @@ and:
 ```
 nc -z PHONE_IP 2222
 ```
+
+### No Hotspot Detected 
+
+if using hotspot mode 
+
+```bash
+PHONE_IP=""
+```
+
+verify that your phone hotspot is enabled and your computer is connected to it
+
 ---
 
 #### Mount Failed
