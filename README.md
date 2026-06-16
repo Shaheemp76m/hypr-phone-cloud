@@ -157,19 +157,16 @@ Connection succeeded
 ## 🖥️ Using Kitty Instead Of Rofi
 
 The default version uses a Rofi password prompt:
-```
-PASSWORD=$(rofi -dmenu -password ...)
-```
-If you prefer Kitty:
 
-Replace the password section with something like:
+```bash
+PASSWORD=$(rofi -dmenu -password \
+    -theme ~/.config/rofi/password.rasi \
+    -p "Cloud Password")
 ```
-kitty sh -c 'read -s -p "Password: " PASSWORD'
-```
-or create a dedicated Kitty-based prompt script.
 
-The rest of the mounting logic remains the same.
+If you prefer Kitty, replace the Rofi password prompt with your preferred terminal-based password input method.
 
+The rest of the mounting logic remains unchanged.
 ---
 
 ## 📦 Requirements
