@@ -6,7 +6,7 @@ No terminal commands. No manual SSHFS mounting. Just press a key, enter your pas
 
 ---
 
-## ✨ Features
+# ✨ Features
 
 ### - 🔐 Password prompt using Rofi
 
@@ -39,8 +39,8 @@ SUPER + P
 If the phone is reachable:
 ```
 ┌─────────────────────┐
-│ Cloud Password      │
-│ ********            │
+│ Cloud Password          │
+│ ********                │
 └─────────────────────┘
 ```
 Enter your password and the phone is mounted to:
@@ -57,6 +57,7 @@ hypr-phone-cloud/
 ├── phone-cloud.sh
 ├── password.rasi
 ├── cloud-status.sh
+├── CHANGELOG.md
 └── README.md
 ```
 ---
@@ -143,6 +144,7 @@ PHONE_IP=""
 
 The script will automatically detect the hotspot gateway adress.
 No manual IP updates are required when the hotspot restarts 
+
 ---
 ## Hyprland Keybind
 
