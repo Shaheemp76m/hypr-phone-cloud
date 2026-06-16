@@ -54,12 +54,47 @@ hypr-phone-cloud/
 ```
 ---
 
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Shaheemp76m/hypr-phone-cloud.git
+cd hypr-phone-cloud
+```
+
+Create required directories:
+
+```bash
+mkdir -p ~/.config/hypr/scripts
+mkdir -p ~/.config/rofi
+```
+
+Copy files:
+
+```bash
+cp phone-cloud.sh ~/.config/hypr/scripts/cloud
+cp password.rasi ~/.config/rofi/password.rasi
+```
+
+Make the script executable:
+
+```bash
+chmod +x ~/.config/hypr/scripts/cloud
+```
+---
+
 ## ⚙️ Configuration
+
+Copy the script to scripts dir:
+
+```bash
+cp your
 
 Open the script:
 
 ```bash
-micro ~/.config/hypr/scripts/cloud
+micro ~/.config/hypr/scripts/cloud.sh
 ```
 
 Edit these variables at the top:
@@ -70,6 +105,7 @@ PHONE_PORT=2222
 PHONE_USER=
 MOUNT_DIR=
 ```
+---
 
 ### Variables
 
@@ -94,6 +130,22 @@ Save the file and make it executable:
 ```bash
 chmod +x ~/.config/hypr/scripts/cloud
 ```
+---
+## Hyprland Keybind
+
+Add to your Hyprland configuration:
+
+```ini
+bind = SUPER, P, exec, ~/.config/hypr/scripts/cloud
+```
+
+Reload Hyprland:
+
+```bash
+hyprctl reload
+```
+---
+
 ### > Note: Before using the script, verify connectivity:
 
 ```bash
@@ -123,12 +175,6 @@ or create a dedicated Kitty-based prompt script.
 
 The rest of the mounting logic remains the same.
 
----
-
-## ⌨️ Example Hyprland Keybind
-```
-bind = SUPER, P, exec, ~/.config/hypr/scripts/cloud.sh
-```
 ---
 
 ## 📦 Requirements
