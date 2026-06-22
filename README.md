@@ -10,26 +10,49 @@ No terminal commands. No manual SSHFS mounting. Just press a key, enter your pas
 
 ### - 🔐 Password prompt using Rofi
 
-### - 📂 Automatic SSHFS mounting
+### - ☁️ Automatic SSHFS mounting
 
-### - 📡 Automatic hotspot IP detection
+### - 🌐 Automatic hotspot IP detection
 
 ### - 🔄 Toggle mount / unmount with one keybind
 
-### - 📶 Detects when the phone is unreachable
+### - 📡 Detects when the phone is unreachable
 
-### - ⚠️ Handles wrong passwords gracefully
+### - ❌ Handles wrong passwords gracefully
 
-### - 🚦 Verifies SSH availability before prompting for a password
+### - ⚡ Verifies SSH availability before prompting for a password
 
-### - 💤 Uses lazy unmount to avoid stale mount issues
+### - 🧹 Uses lazy unmount to avoid stale mount issues
 
 ### - 🔔 Desktop notifications for all actions
 
-### - ☁️ Waybar cloud status indicator
+### - 📊 Waybar cloud status indicator
+
+### - 🔁 Automatic reconnect support
+
+### - 🚫 No manual IP updates required
+
+### - 🔒 Automatic SSH host key handling for dynamic hotspot IPs
+
+### - 📁 Direct access to phone storage through ~/cloud
+
+### - 🖥️ Designed specifically for Hyprland workflows
 
 ---
 
+## Why?
+
+Traditional cloud services require internet access and third-party storage.
+
+Hypr Phone Cloud creates a direct SSHFS connection between your Linux machine and Android phone over a local hotspot connection.
+
+### Benefits:
+- No internet required
+- No third-party cloud providers
+- Full control over your files
+- Fast local transfers
+- Integrated directly into the Hyprland workflow
+---
 ## 📸 How It Works
 
 Press your Hyprland keybind:
@@ -49,8 +72,32 @@ Enter your password and the phone is mounted to:
 ```
 Press the keybind again to unmount.
 
----
+### Commands 
+```bash
+cloud -status
+cloud -mount
+cloud -unmount
+cloud -toggle
+cloud # for help
+```
 
+---
+## Workflow
+```md
+
+Phone Hotspot
+      ↓
+IP Detection
+      ↓
+SSH Reachability Check
+      ↓
+Password Prompt (Rofi)
+      ↓
+SSHFS Mount
+      ↓
+Waybar Status Update
+```
+---
 ## 📁 Project Files
 ```
 hypr-phone-cloud/
@@ -74,21 +121,21 @@ cd hypr-phone-cloud
 Create required directories:
 
 ```bash
-mkdir -p ~/.config/hypr/scripts
+mkdir -p ~/.local/bin
 mkdir -p ~/.config/rofi
 ```
 
 Copy files:
 
 ```bash
-cp phone-cloud.sh ~/.config/hypr/scripts/cloud
+cp phone-cloud.sh ~/.local/bin/cloud
 cp password.rasi ~/.config/rofi/password.rasi
 ```
 
 Make the script executable:
 
 ```bash
-chmod +x ~/.config/hypr/scripts/cloud
+chmod +x ~/.local/bin/cloud
 ```
 ---
 
@@ -97,7 +144,7 @@ chmod +x ~/.config/hypr/scripts/cloud
 Open the script:
 
 ```bash
-micro ~/.config/hypr/scripts/cloud
+micro ~/.local/bin/cloud
 ```
 
 Edit these variables at the top:
@@ -131,7 +178,7 @@ MOUNT_DIR=~/cloud
 Save the file and make it executable:
 
 ```bash
-chmod +x ~/.config/hypr/scripts/cloud
+chmod +x ~/.local/bin/cloud
 ```
 ---
 ## Hotspot Mode
@@ -151,7 +198,7 @@ No manual IP updates are required when the hotspot restarts
 Add to your Hyprland configuration:
 
 ```ini
-bind = SUPER, P, exec, ~/.config/hypr/scripts/cloud
+bind = SUPER, P, exec, cloud -toggle
 ```
 
 Reload Hyprland:

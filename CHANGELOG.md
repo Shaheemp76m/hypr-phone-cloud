@@ -19,3 +19,25 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Eliminated manual IP updates for hotspot users
+
+## [1.2.0] - 2025-06-22
+
+### Added
+- Automatic hotspot gateway IP discovery 
+- SSh hotkey verification bypass for dynamic hotspot IPs
+- automatic cloud mount status detection
+- improved SSHFS reconnector behavior
+
+### Improved
+- refactored mount/unmount logic into dedicated funtions 
+- redused manual configurations required
+- cleaner notification handling
+- better support for changing phone IP adresses
+- more reliable cloud toggle funtionality 
+
+### Fixed
+- fixed cloud mounting failures after hotspot changes
+- fixed stable SSH known_hosts issue with dynamic Ips 
+- fixed broken mountstate detection 
+- fixed JSON output issue affecting waybar cloud status
+- fixed unjmount behavior for disconected SSHFS mounts
